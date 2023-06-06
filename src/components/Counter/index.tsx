@@ -7,12 +7,14 @@ type CounterProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   label: string;
+  showDecimal?: boolean;
 };
 
 export default function Counter({
   counterKey,
   data,
   label,
+  showDecimal,
 }: CounterProps): JSX.Element {
   return (
     <>
@@ -23,9 +25,9 @@ export default function Counter({
         style={{ color: '#FCFCFC' }}
       >
         <Flex direction='column' alignItems='center'>
-          <Typography variant='subtitle1'>{label}</Typography>
+          <Typography variant='h6'>{label}</Typography>
           <Typography variant='h4'>
-            {formatNumber(data[0][counterKey], 0)}
+            {formatNumber(data[0][counterKey], showDecimal ? 2 : 0)}
           </Typography>
         </Flex>
       </Flex>

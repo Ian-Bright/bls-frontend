@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 
 export type TypographyVariant =
     | 'caption'
+    | 'h2'
     | 'h4'
     | 'h5'
     | 'h6'
@@ -20,6 +21,13 @@ export const typography: TypographyVariantMap = {
         fontSize: '12px',
         fontWeight: 400,
         lineHeight: '14px',
+    },
+    h2: {
+        fontFamily: 'Heebo',
+        fontSize: '48px',
+        fontWeight: 500,
+        letterSpacing: '0.5px',
+        lineHeight: 'g6px',
     },
     h4: {
         fontFamily: 'Heebo',

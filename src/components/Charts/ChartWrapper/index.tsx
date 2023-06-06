@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { ChartScale, ChartType, StackBy } from 'utils/constants';
 import PieChart from '../PieChart';
 import { generateStackData } from 'utils';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 type ChartWrapperProps = {
   chartType: string;
@@ -13,8 +14,9 @@ type ChartWrapperProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   grid?: boolean;
-  stackBy?: StackBy;
   scale?: ChartScale;
+  showDecimals?: boolean;
+  stackBy?: StackBy;
   xAxisTitle: string;
   xKey: string;
   yAxisTitle: string;
@@ -27,6 +29,7 @@ export default function ChartWrapper({
   data,
   grid,
   scale = ChartScale.Linear,
+  showDecimals,
   stackBy,
   xAxisTitle,
   xKey,
@@ -67,48 +70,82 @@ export default function ChartWrapper({
 
   if (chartType === ChartType.Area) {
     return (
-      <AreaChart
-        color={color}
-        data={sortedData}
-        grid={!!grid}
-        scale={scale}
-        stackBy={stackBy}
-        xAxisTitle={xAxisTitle}
-        xKey={xKey || 'x'}
-        yAxisTitle={yAxisTitle}
-        yKey={yKey || 'y'}
-      />
+      <AutoSizer>
+        {({ height, width }: { height: number; width: number }) => (
+          <AreaChart
+            color={color}
+            data={sortedData}
+            grid={!!grid}
+            height={height}
+            scale={scale}
+            showDecimals={showDecimals}
+            stackBy={stackBy}
+            width={width}
+            xAxisTitle={xAxisTitle}
+            xKey={xKey || 'x'}
+            yAxisTitle={yAxisTitle}
+            yKey={yKey || 'y'}
+          />
+        )}
+      </AutoSizer>
     );
   } else if (chartType === ChartType.Bar) {
     return (
-      <BarChart
-        color={color}
-        data={sortedData}
-        grid={!!grid}
-        scale={scale}
-        stackBy={stackBy}
-        xAxisTitle={xAxisTitle}
-        xKey={xKey || 'x'}
-        yAxisTitle={yAxisTitle}
-        yKey={yKey || 'y'}
-      />
+      <AutoSizer>
+        {({ height, width }: { height: number; width: number }) => (
+          <BarChart
+            color={color}
+            data={sortedData}
+            grid={!!grid}
+            height={height}
+            scale={scale}
+            showDecimals={showDecimals}
+            stackBy={stackBy}
+            width={width}
+            xAxisTitle={xAxisTitle}
+            xKey={xKey || 'x'}
+            yAxisTitle={yAxisTitle}
+            yKey={yKey || 'y'}
+          />
+        )}
+      </AutoSizer>
     );
   } else if (chartType === ChartType.Line) {
     return (
-      <LineChart
-        color={color}
-        curveType='basis'
-        data={sortedData}
-        grid={!!grid}
-        scale={scale}
-        stackBy={stackBy}
-        xAxisTitle={xAxisTitle}
-        xKey={xKey || 'x'}
-        yAxisTitle={yAxisTitle}
-        yKey={yKey || 'y'}
-      />
+      <AutoSizer>
+        {({ height, width }: { height: number; width: number }) => (
+          <LineChart
+            color={color}
+            curveType='basis'
+            data={sortedData}
+            grid={!!grid}
+            height={height}
+            scale={scale}
+            showDecimals={showDecimals}
+            stackBy={stackBy}
+            width={width}
+            xAxisTitle={xAxisTitle}
+            xKey={xKey || 'x'}
+            yAxisTitle={yAxisTitle}
+            yKey={yKey || 'y'}
+          />
+        )}
+      </AutoSizer>
     );
   } else {
-    return <PieChart data={data} dataKey={yKey || 'y'} nameKey={xKey || 'x'} />;
+    return (
+      <AutoSizer>
+        {({ height, width }: { height: number; width: number }) => (
+          <PieChart
+            data={data}
+            dataKey={yKey || 'y'}
+            height={height}
+            nameKey={xKey || 'x'}
+            showDecimals={showDecimals}
+            width={width}
+          />
+        )}
+      </AutoSizer>
+    );
   }
 }

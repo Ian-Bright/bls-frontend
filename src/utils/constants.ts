@@ -8,6 +8,7 @@ export type AxisChartProps = {
     grid: boolean;
     height?: number;
     scale: ChartScale;
+    showDecimals?: boolean;
     stackBy?: StackBy;
     width?: number;
     xAxisTitle: string;
@@ -35,18 +36,12 @@ export const MS_PER_MONTH = 30.44 * MS_PER_DAY; // Milleseconds per month
 export const MS_PER_YEAR = 365.25 * MS_PER_DAY; // Millesconds per year
 
 export const PALETTE = [
-    '#a6cee3',
-    '#1f78b4',
-    '#b2df8a',
-    '#33a02c',
-    '#fb9a99',
-    '#e31a1c',
-    '#fdbf6f',
-    '#ff7f00',
-    '#cab2d6',
-    '#6a3d9a',
-    '#ffff99',
-    '#b15928',
+    '#84ACCE',
+    '#74FFCE',
+    '#E040FB',
+    '#3F51B5',
+    '#F18F01'
+
 ];
 
 export type StackBy = {

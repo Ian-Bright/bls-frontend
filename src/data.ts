@@ -3,19 +3,25 @@ import { ChartType } from "utils/constants";
 export const COUNTERS = [
     {
         counterKey: 'Num_Wallets_Created',
-        label: 'Wallets Created',
+        label: 'BLS Wallets Created',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
         title: 'Wallets'
     },
     {
         counterKey: 'Num_Wallets_Recovered',
-        label: 'Wallets Recovered',
+        label: 'BLS Wallets Recovered',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
         title: 'Wallets'
     },
     {
         counterKey: 'Num_Bundles_Submitted',
         label: 'Bundles Submitted',
+        queryId: 'aa55c0623a28438eac9aecfb7b767726',
+        title: 'Tx Groups'
+    },
+    {
+        counterKey: 'Num_Operations_Submitted',
+        label: 'Operations Submitted',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
         title: 'Tx Groups'
     },
@@ -32,27 +38,24 @@ export const COUNTERS = [
         title: 'Tx Groups'
     },
     {
-        counterKey: 'Num_Operations_Submitted',
-        label: 'Operations Submitted',
-        queryId: 'aa55c0623a28438eac9aecfb7b767726',
-        title: 'Tx Groups'
-    },
-    {
         counterKey: 'Avg_Operations_Per_Bundle',
         label: 'Operations/Bundle',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
+        showDecimal: true,
         title: 'Averages'
     },
     {
         counterKey: 'Avg_Actions_Per_Bundle',
         label: 'Actions/Bundle',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
+        showDecimal: true,
         title: 'Averages'
     },
     {
         counterKey: 'Avg_Actions_Per_Operation',
         label: 'Actions/Operations',
         queryId: 'aa55c0623a28438eac9aecfb7b767726',
+        showDecimal: true,
         title: 'Averages'
     },
     {
@@ -77,20 +80,6 @@ export const COUNTERS = [
 
 export const CHARTS = [
     {
-        chartType: ChartType.Pie,
-        queryId: '7ad7fb1828094272880202e903af4239',
-        title: 'Action Method Ids Called',
-        xKey: 'actionMethodId',
-        yKey: 'action_count'
-    },
-    {
-        chartType: ChartType.Pie,
-        queryId: '2578dd88f123458183e0fe077d285243',
-        title: 'Action Recipients',
-        xKey: 'actionsRecipient',
-        yKey: 'action_count'
-    },
-    {
         chartType: ChartType.Bar,
         color: '#B8B7D0',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
@@ -113,6 +102,7 @@ export const CHARTS = [
     {
         chartType: ChartType.Bar,
         color: '#CE83D9',
+        description: 'Number of bundles (a group of operations containing actions) submitted on-chain',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
         title: 'Number of Bundles Submitted per Day',
         xAxisTitle: 'Day',
@@ -123,6 +113,7 @@ export const CHARTS = [
     {
         chartType: ChartType.Bar,
         color: '#8784D8',
+        description: 'Number of Actions (function calls coming from a signed operation) submitted on-chain',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
         title: 'Number of Actions Submitted per Day',
         xAxisTitle: 'Day',
@@ -133,6 +124,7 @@ export const CHARTS = [
     {
         chartType: ChartType.Bar,
         color: '#C6C5CF',
+        description: 'Number of Operations (a group of actions) submitted on-chain',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
         title: 'Number of Operations Submitted per Day',
         xAxisTitle: 'Day',
@@ -154,6 +146,7 @@ export const CHARTS = [
         chartType: ChartType.Bar,
         color: '#84D9CC',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
+        showDecimals: true,
         title: 'Average Operations per Bundle per day',
         xAxisTitle: 'Day',
         xKey: 'day',
@@ -164,6 +157,7 @@ export const CHARTS = [
         chartType: ChartType.Bar,
         color: '#8784D8',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
+        showDecimals: true,
         title: 'Average Actions per Bundle Per Dayy',
         xAxisTitle: 'Day',
         xKey: 'day',
@@ -174,6 +168,7 @@ export const CHARTS = [
         chartType: ChartType.Bar,
         color: '#B6B6BF',
         queryId: 'ab1a30af5991425b8b4abd7c37f859fa',
+        showDecimals: true,
         title: 'Average Actions per Operation per Day',
         xAxisTitle: 'Day',
         xKey: 'day',
@@ -211,6 +206,20 @@ export const CHARTS = [
         yKey: 'avgGas'
     },
     {
+        chartType: ChartType.Pie,
+        queryId: '7ad7fb1828094272880202e903af4239',
+        title: 'Action Method Ids Called',
+        xKey: 'actionMethodId',
+        yKey: 'action_count'
+    },
+    {
+        chartType: ChartType.Pie,
+        queryId: '2578dd88f123458183e0fe077d285243',
+        title: 'Action Recipients',
+        xKey: 'actionsRecipient',
+        yKey: 'action_count'
+    },
+    {
         chartType: ChartType.Bar,
         queryId: '74a8783fd397441ca0dd9cbc96423e81',
         stackBy: {
@@ -236,16 +245,35 @@ export const CHARTS = [
     },
 ];
 
-// type ChartWrapperProps = {
-//     chartType: string;
-//     color: string;
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     data: any[];
-//     grid?: boolean;
-//     stackBy?: StackBy;
-//     scale?: ChartScale;
-//     xAxisTitle: string;
-//     xKey: string;
-//     yAxisTitle: string;
-//     yKey: string;
-// };
+export const SECTIONS = [
+    {
+        charts: [0, 2],
+        counters: [0, 2],
+        description: 'BLS smart-contract wallets for use with WAX',
+        title: 'Wallets',
+    },
+    {
+        charts: [2, 6],
+        counters: [2, 6],
+        description: 'Bundles, submitted on-chain, encompass Operations that carry Actions - the actual function calls.',
+        title: 'Bundle Composition'
+    },
+    {
+        charts: [6, 9],
+        counters: [6, 9],
+        description: 'Bundle, Operations, & Actions Relationship',
+        title: 'Averages',
+    },
+    {
+        charts: [9, 12],
+        counters: [9, 12],
+        description: 'The gas expenses for each bundle submission.',
+        title: 'Gas',
+    },
+    {
+        charts: [12],
+        counters: [],
+        description: 'Metrics related to the contracts called and method IDs invoked within BLS Wallet actions.',
+        title: 'Actions'
+    }
+];

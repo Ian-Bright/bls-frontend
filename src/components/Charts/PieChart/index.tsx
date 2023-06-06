@@ -3,7 +3,6 @@ import {
   Cell,
   Pie,
   PieChart as RechartsPieChart,
-  ResponsiveContainer,
   Sector,
   Tooltip as RechartsTooltip,
   TooltipProps,
@@ -16,13 +15,19 @@ type PieChartProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   dataKey: string;
+  height: number;
   nameKey: string;
+  showDecimals?: boolean;
+  width: number;
 };
 
 export default function PieChart({
   data,
   dataKey,
+  height,
   nameKey,
+  showDecimals,
+  width,
 }: PieChartProps): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -49,34 +54,34 @@ export default function PieChart({
   };
 
   return (
-    <ResponsiveContainer>
-      <RechartsPieChart>
-        <RechartsTooltip
-          content={(props: TooltipProps<number, string>) => (
-            <Tooltip {...props} xKey={nameKey} />
-          )}
-          wrapperStyle={{ outline: 'none', zIndex: 100 }}
-        />
-        <Pie
-          activeIndex={activeIndex}
-          activeShape={activeShape}
-          cx='50%'
-          cy='50%'
-          data={data}
-          dataKey={dataKey}
-          labelLine={false}
-          nameKey={nameKey}
-          onMouseEnter={onPieEnter}
-          onMouseLeave={() => setActiveIndex(-1)}
-        >
-          {data.map((_, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={PALETTE[index % PALETTE.length]}
-            />
-          ))}
-        </Pie>
-      </RechartsPieChart>
-    </ResponsiveContainer>
+    <RechartsPieChart height={height * 0.9} width={width}>
+      <RechartsTooltip
+        content={(props: TooltipProps<number, string>) => (
+          <Tooltip
+            {...props}
+            isPie={true}
+            showDecimals={showDecimals}
+            xKey={nameKey}
+          />
+        )}
+        wrapperStyle={{ outline: 'none', zIndex: 100 }}
+      />
+      <Pie
+        activeIndex={activeIndex}
+        activeShape={activeShape}
+        cx='50%'
+        cy='50%'
+        data={data}
+        dataKey={dataKey}
+        labelLine={false}
+        nameKey={nameKey}
+        onMouseEnter={onPieEnter}
+        onMouseLeave={() => setActiveIndex(-1)}
+      >
+        {data.map((_, index) => (
+          <Cell key={`cell-${index}`} fill={PALETTE[index % PALETTE.length]} />
+        ))}
+      </Pie>
+    </RechartsPieChart>
   );
 }
