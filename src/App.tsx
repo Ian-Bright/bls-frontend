@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     backgroundColor: '#34383D',
     border: '1px solid #74FFCE',
     borderRadius: '4px',
-    color: '#74FFCE',
+    color: '#FCFCFC',
     padding: '20px',
   },
   container: {
@@ -82,7 +82,7 @@ function App() {
         justifyContent='center'
         mb='32px'
         mt='12px'
-        style={{ color: '#74FFCE' }}
+        style={{ color: '#FCFCFC' }}
       >
         <Typography variant='h2'>WAX V1 Analytics</Typography>
       </Flex>
