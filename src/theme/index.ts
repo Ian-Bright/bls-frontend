@@ -25,9 +25,9 @@ export const typography: TypographyVariantMap = {
     h2: {
         fontFamily: 'Inconsolata',
         fontSize: '48px',
-        fontWeight: 500,
-        letterSpacing: '0.5px',
-        lineHeight: 'g6px',
+        fontWeight: 1000,
+        letterSpacing: '6px',
+        lineHeight: '56px',
     },
     h4: {
         fontFamily: 'Inconsolata',
