@@ -2,7 +2,7 @@
 
 Frontend dashboard for displaying BLS Wallet contract analytics
 
-### BLS Analytics Server repo
+### BLS Wallet Analytics Server repo
 
 [https://github.com/Ian-Bright/bls-server](https://github.com/Ian-Bright/bls-server)
 
