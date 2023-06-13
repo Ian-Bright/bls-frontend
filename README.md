@@ -2,9 +2,9 @@
 
 Frontend dashboard for displaying BLS Wallet contract analytics
 
-### Frontend url
+### BLS Analytics Server repo
 
-[https://wax-v1-analytics.vercel.app/](https://wax-v1-analytics.vercel.app/)
+[https://github.com/Ian-Bright/bls-server](https://github.com/Ian-Bright/bls-server)
 
 ## Setup
 
